@@ -21,3 +21,7 @@ output "vpc_id" {
 output "rds_sg_id" {
   value = aws_security_group.rds_sg.id
 }
+
+output "igw" {
+  value = aws_internet_gateway.terra_igw.id
+}

@@ -3,7 +3,7 @@ resource "aws_launch_template" "terra_lt" {
   image_id = var.ami_id
   instance_type = var.instance_type
   vpc_security_group_ids = [var.security_group]
-  user_data = filebase64("userdata.sh")
+  user_data = filebase64("${path.module}/userdata.sh")
   network_interfaces {
     subnet_id = var.subnet_id  # Reference subnet from VPC module
   }

@@ -3,7 +3,7 @@ resource "aws_lb" "terra_alb" {
   internal = false
   load_balancer_type = "application"
   security_groups = [var.security_group_id]
-  depends_on = [module.vpc.terra_igw]
+  depends_on = [var.igw]
   subnets = [var.public_subnet_id]
 }
 
