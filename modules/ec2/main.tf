@@ -17,7 +17,7 @@ resource "aws_launch_template" "terra_lt" {
 }
 
 resource "aws_autoscaling_group" "asg" {
-  vpc_zone_identifier = [module.vpc.private_subnet_id]
+  vpc_zone_identifier = [var.subnet_id]
   desired_capacity = 2
   max_size = 3
   min_size = 1
