@@ -2,10 +2,10 @@ resource "aws_launch_template" "terra_lt" {
   name_prefix = "terra-template"
   image_id = var.ami_id
   instance_type = var.instance_type
-  vpc_security_group_ids = [module.vpc.terra_sg]
+  vpc_security_group_ids = [var.security_group]
   user_data = filebase64("userdata.sh")
   network_interfaces {
-    subnet_id = module.vpc.private_subnet_id  # Reference subnet from VPC module
+    subnet_id = var.subnet_id  # Reference subnet from VPC module
   }
   tag_specifications {
     resource_type = "instance"
@@ -13,7 +13,7 @@ resource "aws_launch_template" "terra_lt" {
       Name = "Terra Instance"
     }
   }
-  depends_on = [module.vpc]
+  depends_on = [var.vpc_id, var.security_group]
 }
 
 resource "aws_autoscaling_group" "asg" {

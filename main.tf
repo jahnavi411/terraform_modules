@@ -8,6 +8,7 @@ module "vpc" {
 module "ec2" {
   source = "./modules/ec2"
   ami_id = var.ami_id
+  vpc_id = module.vpc.vpc_id
   instance_type = var.instance_type
   subnet_id = module.vpc.private_subnet_id
   security_group = module.vpc.security_group_id
@@ -17,7 +18,7 @@ module "ec2" {
 module "alb" {
   source = "./modules/alb"
   vpc_id = module.vpc.vpc_id
-  public_subnet_id = module.vpc.public_subnet_cidr
+  public_subnet_id = module.vpc.public_subnet_id
   security_group_id = module.vpc.alb_sg_id
 }
 
