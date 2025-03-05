@@ -5,9 +5,7 @@ resource "aws_launch_template" "terra_lt" {
   vpc_security_group_ids = [var.security_group]
   user_data = filebase64("${path.module}/userdata.sh")
   network_interfaces {
-    associate_public_ip_address = true
     subnet_id = var.subnet_id  # Reference subnet from VPC module
-    security_groups = var.security_group
   }
   iam_instance_profile {
     name = var.iam_role
@@ -18,7 +16,7 @@ resource "aws_launch_template" "terra_lt" {
       Name = "Terra Instance"
     }
   }
-  depends_on = [var.vpc_id, var.security_group]
+  depends_on = [var.vpc_id]
 }
 
 resource "aws_autoscaling_group" "asg" {
