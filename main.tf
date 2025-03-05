@@ -27,6 +27,7 @@ module "ec2" {
   subnet_id = module.vpc.private_subnet_id
   security_group = module.vpc.security_group_id
   key_name = "terra_keypair"
+  iam_role = module.iam.iam_role
 }
 
 module "alb" {
@@ -34,6 +35,7 @@ module "alb" {
   igw   = module.vpc.igw
   vpc_id = module.vpc.vpc_id
   public_subnet_id = module.vpc.public_subnet_id
+  public_subnet_2_id = module.vpc.public_subnet_2_id
   security_group_id = module.vpc.alb_sg_id
 }
 

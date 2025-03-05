@@ -4,7 +4,7 @@ resource "aws_lb" "terra_alb" {
   load_balancer_type = "application"
   security_groups = [var.security_group_id]
   depends_on = [var.igw]
-  subnets = [var.public_subnet_id]
+  subnets = [var.public_subnet_id, var.public_subnet_2_id]
 }
 
 resource "aws_lb_target_group" "terra_tg" {

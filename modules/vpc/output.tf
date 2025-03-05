@@ -25,3 +25,7 @@ output "rds_sg_id" {
 output "igw" {
   value = aws_internet_gateway.terra_igw.id
 }
+
+output "public_subnet_2_id" {
+  value = aws_subnet.public_2.id
+}

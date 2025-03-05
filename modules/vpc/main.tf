@@ -18,6 +18,14 @@ resource "aws_subnet" "public_subnet" {
     availability_zone = var.az
 }
 
+
+resource "aws_subnet" "public_2" {
+  vpc_id                  = aws_vpc.main.id
+  cidr_block              = var.public_subnet_2_cidr
+  availability_zone       = var.az2
+  map_public_ip_on_launch = true
+}
+
 #create private subnet
 resource "aws_subnet" "private_subnet" {
     vpc_id            = aws_vpc.terra_vpc.id
@@ -42,6 +50,11 @@ resource "aws_route_table" "public_rt" {
 #route table association for public subnet
 resource "aws_route_table_association" "public_assoc" {
     subnet_id      = aws_subnet.public_subnet.id
+    route_table_id = aws_route_table.public_rt.id
+}
+
+resource "aws_route_table_association" "public_2_assoc" {
+    subnet_id      = aws_subnet.public_2.id
     route_table_id = aws_route_table.public_rt.id
 }
 

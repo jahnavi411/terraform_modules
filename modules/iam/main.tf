@@ -13,8 +13,7 @@ resource "aws_iam_role" "terra_cw_role" {
                 "ssm:GetParameter",
                 "ssm:GetParameters",
                 "ssm:GetParametersByPath",
-                "cloudwatch:PutMetricData",
-                "sts:AssumeRole"
+                "cloudwatch:PutMetricData"
             ]
             
     }]
