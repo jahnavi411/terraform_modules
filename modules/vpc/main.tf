@@ -96,13 +96,6 @@ resource "aws_security_group" "alb_sg" {
         cidr_blocks = [var.allow_all]
     }
     ingress {
-        description = "Allow PostgreSQL access from EC2 Security Group"
-        from_port   = 5432
-        to_port     = 5432
-        protocol    = "tcp"
-        security_groups = [var.allow_all]  # Only allow EC2 instances to connect
-    }
-    ingress {
         from_port   = 8000
         to_port     = 8000
         protocol    = "tcp"
@@ -128,7 +121,13 @@ resource "aws_security_group" "ec2_sg" {
         protocol         = "tcp"
         cidr_blocks      = [var.allow_all]
       }
-
+    ingress {
+        description = "Allow PostgreSQL access from EC2 Security Group"
+        from_port   = 5432
+        to_port     = 5432
+        protocol    = "tcp"
+        security_groups = [var.allow_all]  # Only allow EC2 instances to connect
+    }
     ingress {
         from_port   = 8000
         to_port     = 8000
