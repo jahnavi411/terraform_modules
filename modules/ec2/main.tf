@@ -66,7 +66,6 @@ resource "aws_key_pair" "terra_keypair" {
 
 resource "aws_s3_bucket" "terra_bucket" {
   bucket = "terra-bucket"
-  region = "us-east-1"
   tags = {
     Name = "Terraform S3 Bucket"
   }

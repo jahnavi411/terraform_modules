@@ -9,7 +9,6 @@ terraform {
 
 provider "aws" {
   region = var.region
-  alias = "us-east-1"
 }
 
 module "vpc" {
