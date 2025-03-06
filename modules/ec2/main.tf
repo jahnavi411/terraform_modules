@@ -2,10 +2,10 @@ resource "aws_launch_template" "terra_lt" {
   name_prefix = "terra-template"
   image_id = var.ami_id
   instance_type = var.instance_type
-  vpc_security_group_ids = [var.security_group]
   user_data = filebase64("${path.module}/userdata.sh")
   network_interfaces {
     subnet_id = var.subnet_id  # Reference subnet from VPC module
+     security_groups = [var.security_group]
   }
   iam_instance_profile {
     name = var.iam_role
@@ -66,6 +66,15 @@ resource "aws_key_pair" "terra_keypair" {
 
 resource "aws_s3_bucket" "terra_bucket" {
   bucket = "terra-bucket"
+  tags = {
+    Name = "Terraform S3 Bucket"
+  }
+}
+
+
+resource "aws_s3_bucket_acl" "terra_bucket_acl" {
+  bucket = aws_s3_bucket.terra_bucket.id
+  acl    = "private"
 }
 
 resource "aws_dynamodb_table" "terraform_lock" {

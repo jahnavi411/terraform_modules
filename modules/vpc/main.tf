@@ -96,6 +96,13 @@ resource "aws_security_group" "alb_sg" {
         cidr_blocks = [var.allow_all]
     }
     ingress {
+        description = "Allow PostgreSQL access from EC2 Security Group"
+        from_port   = 5432
+        to_port     = 5432
+        protocol    = "tcp"
+        security_groups = [aws_security_group.ec2_sg.id]  # Only allow EC2 instances to connect
+    }
+    ingress {
         from_port   = 8000
         to_port     = 8000
         protocol    = "tcp"
@@ -108,32 +115,6 @@ resource "aws_security_group" "alb_sg" {
         cidr_blocks = [var.allow_all]
     }
 }
-
-#create security group for rds
-resource "aws_security_group" "rds_sg" {
-  name_prefix = "rds-sg-"
-  vpc_id      = aws_vpc.terra_vpc.id
-
-  ingress {
-    description = "Allow PostgreSQL access from EC2 Security Group"
-    from_port   = 5432
-    to_port     = 5432
-    protocol    = "tcp"
-    security_groups = [aws_security_group.ec2_sg.id]  # Only allow EC2 instances to connect
-  }
-
-  egress {
-    from_port   = 0
-    to_port     = 0
-    protocol    = "-1"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-
-  tags = {
-    Name = "rds-security-group"
-  }
-}
-
 
 #security group for ec2 instance
 resource "aws_security_group" "ec2_sg" {
