@@ -142,5 +142,4 @@ resource "aws_security_group" "ec2_sg" {
         protocol         = "-1"
         cidr_blocks      = [var.allow_all]
         }
-    depends_on = [aws_security_group.alb_sg]
 }
