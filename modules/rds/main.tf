@@ -4,7 +4,7 @@ resource "aws_db_instance" "rds" {
   allocated_storage = var.db_allocated_storage
   db_name = "mydatabase"
   username = "jahnavi"
-  password = "SRE@4nov2000"
+  password = "SRE_4nov2000"
   vpc_security_group_ids = [var.security_group_id]
   skip_final_snapshot = true
 }

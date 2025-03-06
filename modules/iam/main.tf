@@ -9,11 +9,7 @@ resource "aws_iam_role" "terra_cw_role" {
         Service = "ec2.amazonaws.com"
       }
       "Action": [
-                "ec2:DescribeInstances",
-                "ssm:GetParameter",
-                "ssm:GetParameters",
-                "ssm:GetParametersByPath",
-                "cloudwatch:PutMetricData"
+                "sts:AssumeRole"
             ]
             
     }]

@@ -65,7 +65,7 @@ resource "aws_key_pair" "terra_keypair" {
 }
 
 resource "aws_s3_bucket" "terra_bucket" {
-  bucket = "terra_bucket"
+  bucket = "terra-bucket"
 }
 
 resource "aws_dynamodb_table" "terraform_lock" {
