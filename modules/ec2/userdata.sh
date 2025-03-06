@@ -1,5 +1,6 @@
 sudo yum update -y
 sudo yum install git -y
+cd /home/ec2-user
 git clone https://github.com/LondheShubham153/django-tutorial.git
 cd django-tutorial/
 pip3 install django
