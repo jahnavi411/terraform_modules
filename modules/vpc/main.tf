@@ -143,3 +143,7 @@ resource "aws_security_group" "ec2_sg" {
         }
     depends_on = [aws_security_group.alb_sg]
 }
+
+resource "aws_security_group" "rds_sg" {
+  vpc_id = aws_vpc.terra_vpc.id  # ✅ Ensure this matches the VPC of your RDS instance
+}
