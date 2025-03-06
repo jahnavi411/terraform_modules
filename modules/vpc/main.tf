@@ -126,7 +126,7 @@ resource "aws_security_group" "ec2_sg" {
         from_port   = 5432
         to_port     = 5432
         protocol    = "tcp"
-        security_groups = [var.allow_all]  # Only allow EC2 instances to connect
+        security_groups = [aws_security_group.alb_sg.id]  # Only allow EC2 instances to connect
     }
     ingress {
         from_port   = 8000
