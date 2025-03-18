@@ -1,8 +1,8 @@
 sudo yum update -y
 sudo yum install git -y
-cd /home/ec2-user
+cd /home/ec2-user/
 git clone https://github.com/jahnavi411/django_terraform_repo.git
-cd django_terraform_repo/
+cd django_terraform_repo
 pip3 install django
 sudo pip3 install django
 sudo pip3 install psycopg2-binary
