@@ -27,16 +27,16 @@ resource "aws_subnet" "public_2" {
 }
 
 #create private subnet
-resource "aws_subnet" "private_subnet" {
+/*resource "aws_subnet" "private_subnet" {
     vpc_id            = aws_vpc.terra_vpc.id
     cidr_block        = var.private_subnet_cidr
     availability_zone = var.az
-}
+}*/
 
 #create igw
-resource "aws_internet_gateway" "terra_igw" {
+/*resource "aws_internet_gateway" "terra_igw" {
     vpc_id = aws_vpc.terra_vpc.id
-}
+}*/
 
 #route table for public subnet
 resource "aws_route_table" "public_rt" {
@@ -59,19 +59,19 @@ resource "aws_route_table_association" "public_2_assoc" {
 }
 
 #create eip
-resource "aws_eip" "nat_eip" {
+/*resource "aws_eip" "nat_eip" {
     domain = "vpc"
     depends_on = [aws_internet_gateway.terra_igw]
-}
+}*/
 
 #craete nat gateway
-resource "aws_nat_gateway" "nat" {
+/*resource "aws_nat_gateway" "nat" {
     allocation_id = aws_eip.nat_eip.id
     subnet_id     = aws_subnet.public_subnet.id
-}
+}*/
 
 #create route table for private subnet
-resource "aws_route_table" "private_rt" {
+/*resource "aws_route_table" "private_rt" {
   vpc_id = aws_vpc.terra_vpc.id
   route {
     cidr_block = var.allow_all
@@ -83,7 +83,7 @@ resource "aws_route_table" "private_rt" {
 resource "aws_route_table_association" "private_assoc" {
     subnet_id      = aws_subnet.private_subnet.id
     route_table_id = aws_route_table.private_rt.id
-}
+}*/
 
 #security group for load balancer
 resource "aws_security_group" "alb_sg" {

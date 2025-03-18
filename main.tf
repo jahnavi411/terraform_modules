@@ -6,7 +6,7 @@ module "vpc" {
   source = "./modules/vpc"
   vpc_cidr = var.vpc_cidr
   public_subnet_cidr = var.public_subnet_cidr
-  private_subnet_cidr = var.private_subnet_cidr
+  #private_subnet_cidr = var.private_subnet_cidr
 }
 
 module "ec2" {
@@ -14,7 +14,7 @@ module "ec2" {
   ami_id = var.ami_id
   vpc_id = module.vpc.vpc_id
   instance_type = var.instance_type
-  subnet_id = module.vpc.private_subnet_id
+  subnet_id = module.vpc.public_subnet_id
   security_group = module.vpc.security_group_id
   key_name = "terra_keypair"
   iam_role = module.iam.iam_role
