@@ -29,13 +29,6 @@ module "alb" {
   security_group_id = module.vpc.alb_sg_id
 }
 
-module "rds" {
-  source = "./modules/rds"
-  security_group_id = module.vpc.rds_sg_id
-  db_allocated_storage = var.db_allocated_storage
-  db_instance_class = var.db_instance_class
-}
-
 module "cloudwatch" {
   source = "./modules/cloudwatch"
   asg_name = module.ec2.asg_name
