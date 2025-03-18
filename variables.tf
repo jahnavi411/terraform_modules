@@ -8,4 +8,3 @@ variable "db_instance_class" {}
 variable "db_engine_version" {}
 variable "db_allocated_storage" {}
 variable "public_subnet_2_id" {}
-variable "table" {}

@@ -63,14 +63,3 @@ resource "aws_key_pair" "terra_keypair" {
     command = "echo '${tls_private_key.terra_private_key.private_key_pem}' > ./terra_key.pem"
   }
 }
-
-resource "aws_dynamodb_table" "terraform_lock" {
-  name           = "terra-lock"
-  billing_mode   = "PAY_PER_REQUEST"
-  hash_key       = "LockID"
-
-  attribute {
-    name = "LockID"
-    type = "S"
-  }
-}
