@@ -20,14 +20,14 @@ module "ec2" {
   iam_role = module.iam.iam_role
 }
 
-module "alb" {
+/*module "alb" {
   source = "./modules/alb"
   igw   = module.vpc.igw
   vpc_id = module.vpc.vpc_id
   public_subnet_id = module.vpc.public_subnet_id
   public_subnet_2_id = module.vpc.public_subnet_2_id
   security_group_id = module.vpc.alb_sg_id
-}
+}*/
 
 module "cloudwatch" {
   source = "./modules/cloudwatch"

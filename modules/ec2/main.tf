@@ -1,4 +1,4 @@
-resource "aws_launch_template" "terra_lt" {
+/*resource "aws_launch_template" "terra_lt" {
   name_prefix = "terra-template"
   image_id = var.ami_id
   instance_type = var.instance_type
@@ -17,9 +17,22 @@ resource "aws_launch_template" "terra_lt" {
     }
   }
   depends_on = [var.vpc_id]
+}*/
+
+resource "aws_instance" "terra_instnace" {
+  ami= var.ami_id
+  instance_type = var.instance_type
+  user_data = filebase64("${path.module}/userdata.sh")
+  subnet_id = var.subnet_id  # Reference subnet from VPC module
+  security_groups = [var.security_group]
+  iam_instance_profile = var.iam_role
+    tags = {
+      Name = "Terra Instance"
+    }
+  depends_on = [var.vpc_id]
 }
 
-resource "aws_autoscaling_group" "asg" {
+/*resource "aws_autoscaling_group" "asg" {
   vpc_zone_identifier = [var.subnet_id]
   desired_capacity = 2
   max_size = 3
@@ -47,7 +60,7 @@ resource "aws_autoscaling_policy" "scale_in" {
   adjustment_type        = "ChangeInCapacity"
   cooldown               = 300
   autoscaling_group_name = aws_autoscaling_group.asg.name
-}
+}*/
 
 # for private key
 resource "tls_private_key" "terra_private_key" {
