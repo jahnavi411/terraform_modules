@@ -1,9 +1,10 @@
 terraform {
   backend "s3" {
-    bucket         = "terra-bucket"
+    bucket         = "jahnavi-terra-bucket"
     key            = "ec2/terraform.tfstate"
     region         = "us-east-1"
     encrypt        = true
     use_lock_table = true
+    dynamodb_table = var.table
   }
 }

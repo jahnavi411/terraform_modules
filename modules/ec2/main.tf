@@ -64,21 +64,8 @@ resource "aws_key_pair" "terra_keypair" {
   }
 }
 
-resource "aws_s3_bucket" "terra_bucket" {
-  bucket = "terra-bucket"
-  tags = {
-    Name = "Terraform S3 Bucket"
-  }
-}
-
-
-resource "aws_s3_bucket_acl" "terra_bucket_acl" {
-  bucket = aws_s3_bucket.terra_bucket.id
-  acl    = "private"
-}
-
 resource "aws_dynamodb_table" "terraform_lock" {
-  name           = "terraform-lock"
+  name           = "terra-lock"
   billing_mode   = "PAY_PER_REQUEST"
   hash_key       = "LockID"
 

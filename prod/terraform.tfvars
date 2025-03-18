@@ -8,4 +8,3 @@ db_instance_class = "db.t3.micro"
 db_engine_version = "13"
 db_allocated_storage = 20
 public_subnet_2_id = "10.0.3.0/24"
-table = "terra-lock"
