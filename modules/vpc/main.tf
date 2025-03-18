@@ -45,6 +45,9 @@ resource "aws_route_table" "public_rt" {
         cidr_block = var.allow_all
         gateway_id = aws_internet_gateway.terra_igw.id
   }
+  tags = {
+    Name = "Terra Route Table"
+  }
 }
 
 #route table association for public subnet
