@@ -34,9 +34,9 @@ resource "aws_subnet" "public_2" {
 }*/
 
 #create igw
-/*resource "aws_internet_gateway" "terra_igw" {
+resource "aws_internet_gateway" "terra_igw" {
     vpc_id = aws_vpc.terra_vpc.id
-}*/
+}
 
 #route table for public subnet
 resource "aws_route_table" "public_rt" {
